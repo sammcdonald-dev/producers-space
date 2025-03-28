@@ -1,4 +1,17 @@
+import { NavLink } from "react-router";
+
 export default function Navbar() {
+	const categories = [
+		"Music Production",
+		"Beat Making",
+		"Sound Design",
+		"Mixing & Mastering",
+		"Music Business",
+		"Music Theory",
+		"Vocal Production",
+		"Sound Engineering",
+		"Music Marketing",
+	];
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
 			<div className="navbar-start">
@@ -65,13 +78,42 @@ export default function Navbar() {
 							aria-label="close sidebar"
 							className="drawer-overlay"
 						></label>
+						<input
+							type="text"
+							placeholder="Search"
+							className="input input-bordered w-24 md:w-auto"
+						/>
 						<ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
 							{/* Sidebar content here */}
 							<li>
-								<a>Sidebar Item 1</a>
+								<NavLink
+									to="/"
+									className={({ isActive, isPending }) =>
+										isPending
+											? "pending"
+											: isActive
+											? "bg-primary text-primary-content"
+											: ""
+									}
+								>
+									Home
+								</NavLink>
+							</li>
+
+							<li>
+								<a href="/about">Categories</a>
+								<ul className="menu-sub">
+									{categories.map((category) => (
+										<NavLink to={`/category/${category}`}>
+											<li>
+												<a># {category}</a>
+											</li>
+										</NavLink>
+									))}
+								</ul>
 							</li>
 							<li>
-								<a>Sidebar Item 2</a>
+								<a href="/about">About</a>
 							</li>
 						</ul>
 					</div>
