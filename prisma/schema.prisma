@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(uuid())
+  username       String   @unique
+  email          String   @unique
+  bio            String?
+  image          String?
+  longestStreak  Int      @default(0)
+  currentStreak  Int      @default(0)
+  admin          Boolean  @default(false)
+  posts          Post[]
+  comments       Comment[]
+  preferences    UserPreferences?
+}
+
+model UserPreferences {
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String   @unique
+  tailoredEmails Boolean  @default(false)
+  categories     String[]
+}
+
+model Post {
+  id             String   @id @default(uuid())
+  title          String
+  link           String?
+  body           String
+  upvotes        Int      @default(0)
+  downvotes      Int      @default(0)
+  createdAt      DateTime @default(now())
+  status         String   @default("active")
+  category       String?
+  verified       Boolean  @default(false)
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+  categories     Category[]
+  comments       Comment[]
+}
+
+model Comment {
+  id             String   @id @default(uuid())
+  text           String
+  createdAt      DateTime @default(now())
+  status         String   @default("active")
+  post           Post     @relation(fields: [postId], references: [id])
+  postId         String
+  user           User     @relation(fields: [userId], references: [id])
+  userId         String
+}
+
+model Category {
+  id             String   @id @default(uuid())
+  name           String   @unique
+  description    String
+  posts          Post[]
+}
