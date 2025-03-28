@@ -40,8 +40,8 @@ model Post {
   title          String
   link           String?
   body           String
-  upvotes        Int      @default(0)
-  downvotes      Int      @default(0)
+  upVotes        Int      @default(0)
+  downVotes      Int      @default(0)
   createdAt      DateTime @default(now())
   status         String   @default("active")
   category       String?
