@@ -104,11 +104,11 @@ export default function Navbar() {
 								<a href="/about">Categories</a>
 								<ul className="menu-sub">
 									{categories.map((category) => (
-										<NavLink to={`/category/${category}`}>
-											<li>
-												<a># {category}</a>
-											</li>
-										</NavLink>
+										<li>
+											<NavLink to={`/category/${category}`}>
+												# {category}
+											</NavLink>
+										</li>
 									))}
 								</ul>
 							</li>
