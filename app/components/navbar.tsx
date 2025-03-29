@@ -48,11 +48,11 @@ export default function Navbar() {
 						</li>
 					</ul>
 				</div> */}
-				<div className="drawer lg:drawer-open">
+				<div className="drawer">
 					<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 					<div className="drawer-content flex flex-col">
 						{/* Page content here */}
-						<label htmlFor="my-drawer-2" className=" drawer-button lg:hidden">
+						<label htmlFor="my-drawer-2" className="drawer-button">
 							<div tabIndex={0} role="button" className="btn btn-ghost">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
