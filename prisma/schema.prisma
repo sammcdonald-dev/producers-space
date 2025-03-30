@@ -16,9 +16,17 @@ model User {
   longestStreak Int              @default(0)
   currentStreak Int              @default(0)
   admin         Boolean          @default(false)
+  password      Password?
   comments      Comment[]
   posts         Post[]
   preferences   UserPreferences?
+}
+
+model Password {
+  hash String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String @unique
 }
 
 model UserPreferences {
@@ -42,7 +50,7 @@ model Post {
   downVotes  Int        @default(0)
   upVotes    Int        @default(0)
   comments   Comment[]
-  user       User       @relation(fields: [userId], references: [id])
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   categories Category[] @relation("CategoryToPost")
 }
 
@@ -53,8 +61,8 @@ model Comment {
   status    String   @default("active")
   postId    String
   userId    String
-  post      Post     @relation(fields: [postId], references: [id])
-  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Category {
