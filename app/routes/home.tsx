@@ -31,14 +31,17 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 			</ol>
 			<ol>
 				{posts.map((post) => (
-					<li key={post.id} className="mb-2">
-						<a href={`/posts/${post.id}`} className="text-blue-500">
-							{post.title}
+					<div key={post.id} className="card card-border bg-base-100 w-96">
+						<a href={`/post/${post.id}`}>
+							<div className="card-body">
+								<h2 className="card-title">{post.title}</h2>
+								<p>{post.body}</p>
+								<div className="card-actions justify-end">
+									<button className="btn btn-primary">Buy Now</button>
+								</div>
+							</div>
 						</a>
-						<iframe className="text-blue-500" src={post.body}>
-							{post.body}
-						</iframe>
-					</li>
+					</div>
 				))}
 			</ol>
 			<button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
