@@ -29,6 +29,7 @@ export async function getUserId(
 ): Promise<User["id"] | undefined> {
 	const session = await getSession(request);
 	const userId = session.get(USER_SESSION_KEY);
+	console.log("Retrieved userId from session:", userId); // Debugging log
 	return userId;
 }
 
@@ -42,14 +43,11 @@ export async function getUser(request: Request) {
 	throw await logout(request);
 }
 
-export async function requireUserId(
-	request: Request,
-	redirectTo: string = new URL(request.url).pathname
-) {
+export async function requireUserId(request: Request) {
 	const userId = await getUserId(request);
+	console.log("Retrieved userId from session:", userId); // Debugging log
 	if (!userId) {
-		const searchParams = new URLSearchParams([["redirectTo", redirectTo]]);
-		throw redirect(`/login?${searchParams}`);
+		throw redirect(`/login`);
 	}
 	return userId;
 }
