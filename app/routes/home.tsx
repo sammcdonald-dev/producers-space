@@ -18,8 +18,8 @@ export async function loader() {
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { users, posts } = loaderData;
 	return (
-		<div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-			<h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
+		<div className="min-h-screen bg-base-100 flex flex-col items-center justify-center">
+			{/* <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
 				Superblog
 			</h1>
 			<ol className="list-decimal list-inside font-[family-name:var(--font-geist-sans)] text-[#333333]">
@@ -28,16 +28,19 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 						{user.username}
 					</li>
 				))}
-			</ol>
-			<ol>
+			</ol> */}
+			<ol className="space-y-4">
 				{posts.map((post) => (
-					<div key={post.id} className="card card-border bg-base-100 w-96">
+					<div
+						key={post.id}
+						className="card card-border bg-base-200 w-96 shadow-xl"
+					>
 						<a href={`/post/${post.id}`}>
 							<div className="card-body">
 								<h2 className="card-title">{post.title}</h2>
 								<p>{post.body}</p>
 								<div className="card-actions justify-end">
-									<button className="btn btn-primary">Buy Now</button>
+									<button className="btn btn-primary">reply</button>
 								</div>
 							</div>
 						</a>
