@@ -18,7 +18,7 @@ export async function loader() {
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { users, posts } = loaderData;
 	return (
-		<div className="min-h-screen bg-base-100 flex flex-col items-center justify-center">
+		<div className="min-h-screen flex flex-col items-center justify-center">
 			{/* <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
 				Superblog
 			</h1>
@@ -33,7 +33,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 				{posts.map((post) => (
 					<div
 						key={post.id}
-						className="card card-border bg-base-200 w-96 shadow-xl"
+						className="card card-border bg-base-200 w-96 shadow-lg"
 					>
 						<a href={`/post/${post.id}`}>
 							<div className="card-body">
