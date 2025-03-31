@@ -37,32 +37,30 @@ export async function deleteUserByEmail(email: User["email"]) {
 	return prisma.user.delete({ where: { email } });
 }
 
-export async function verifyLogin(
-	email: User["email"],
-	password: Password["hash"]
-) {
+export async function verifyLogin(email: User["email"], password: string) {
 	const userWithPassword = await prisma.user.findUnique({
 		where: { email },
 		include: {
-			password: true,
+			password: true, // Ensure the password relation is included
 		},
 	});
 
 	if (!userWithPassword || !userWithPassword.password) {
-		return null;
+		return null; // User not found or no password associated
 	}
 
+	// Compare the plain-text password with the hashed password
 	const isValid = await bcrypt.compare(
 		password,
 		userWithPassword.password.hash
 	);
 
 	if (!isValid) {
-		return null;
+		return null; // Password is invalid
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	// Exclude the password from the returned user object
 	const { password: _password, ...userWithoutPassword } = userWithPassword;
 
-	return userWithoutPassword;
+	return userWithoutPassword; // Return the user without the password
 }

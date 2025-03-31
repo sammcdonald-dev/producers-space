@@ -8,14 +8,14 @@ import { Form, Link, useActionData, useSearchParams } from "react-router";
 import { useEffect, useRef } from "react";
 
 import { verifyLogin } from "~/models/user.server";
-import { createUserSession, getUserId } from "~/session.server";
+import { createUserSession } from "~/session.server";
 import { safeRedirect, validateEmail } from "~/utils";
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-	const userId = await getUserId(request);
-	if (userId) return redirect("/");
-	return Response.json({});
-};
+// export const loader = async ({ request }: LoaderFunctionArgs) => {
+// 	const userId = await getUserId(request);
+// 	if (!userId) return redirect("/");
+// 	return userId;
+// };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData();
@@ -53,12 +53,12 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 			{ status: 400 }
 		);
 	}
-
+	console.log("User logged in:", user);
 	return createUserSession({
-		redirectTo,
-		remember: remember === "on" ? true : false,
 		request,
-		userId: user.id,
+		userId: user.id, // Ensure user.id is being passed here
+		remember: remember === "on",
+		redirectTo,
 	});
 };
 
@@ -66,7 +66,7 @@ export const meta: MetaFunction = () => [{ title: "Login" }];
 
 export default function LoginPage() {
 	const [searchParams] = useSearchParams();
-	const redirectTo = searchParams.get("redirectTo") || "/dashboard";
+	const redirectTo = searchParams.get("redirectTo") || "/";
 	type ActionErrors = {
 		errors: {
 			email: string | null;
