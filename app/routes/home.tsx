@@ -2,6 +2,7 @@ import { Form } from "react-router";
 import type { Route } from "./+types/home";
 import prisma from "~/lib/prisma";
 import { getSession } from "~/session.server";
+import Post from "~/components/post";
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -35,30 +36,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 			</ol> */}
 			<ol className="space-y-4">
 				{posts.map((post) => (
-					<div
-						key={post.id}
-						className="card card-border bg-base-200 w-96 shadow-lg"
-					>
-						<a href={`/post/${post.id}`}>
-							<div className="card-body">
-								<h2 className="card-title">{post.title}</h2>
-								{sessionUserId === post.userId && (
-									<Form action="/deletePost" method="post">
-										<button
-											type="submit"
-											className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-										>
-											Logout
-										</button>
-									</Form>
-								)}
-								<p>{post.body}</p>
-								<div className="card-actions justify-end">
-									<button className="btn btn-primary">reply</button>
-								</div>
-							</div>
-						</a>
-					</div>
+					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}
 			</ol>
 			<button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
