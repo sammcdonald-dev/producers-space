@@ -13,7 +13,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 		"Music Marketing",
 	];
 	return (
-		<div className="drawer lg:drawer-open bg-base-100">
+		<div className="drawer z-20 lg:drawer-open bg-base-100">
 			<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 			<div className="drawer-content flex flex-col">
 				<div className="navbar bg-base-200 sticky top-0 shadow-sm z-10">
@@ -86,7 +86,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 				{/* Page content here */}
 				{children}
 			</div>
-			<div className="drawer-side lg:shadow-lg">
+			<div className="drawer-side z-10 lg:shadow-lg">
 				<label
 					htmlFor="my-drawer-2"
 					aria-label="close sidebar"

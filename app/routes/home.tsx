@@ -34,7 +34,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 					</li>
 				))}
 			</ol> */}
-			<ol className="space-y-4">
+			<ol className="space-y-5 mt-5">
 				{posts.map((post) => (
 					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}

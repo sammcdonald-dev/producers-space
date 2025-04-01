@@ -33,7 +33,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	}, [isEditing]);
 
 	return (
-		<div key={post.id} className="card card-border bg-base-200 w-96 shadow-lg">
+		<div key={post.id} className="card card-border bg-base-200 w-lg shadow-lg">
 			{isEditing ? (
 				<Form
 					action="/editPost"
@@ -72,34 +72,32 @@ export default function Post({ post, sessionUserId }: PostProps) {
 				// href={`/post/${post.id}`}
 				<a>
 					<div className="card-body">
-						{sessionUserId === post.userId && (
-							<Form
-								action="/deletePost"
-								method="post"
-								className="flex flex-row justify-between"
-							>
-								<h2 className="card-title">{post.title}</h2>
-								<input type="hidden" name="postId" value={post.id} />
-								<div className="dropdown dropdown-end">
-									<EllipsesIcon />
-									<ul
-										tabIndex={0}
-										className="dropdown-content menu bg-base-100 rounded-box z-1 w-24 p-2 shadow-sm"
-									>
-										<li>
-											<button onClick={() => setIsEditing(true)}>edit</button>
-										</li>
-										<li>
-											<button type="submit" className=" text-red-500">
-												delete
-											</button>
-										</li>
-									</ul>
-								</div>
-							</Form>
-						)}
+						<div className="flex justify-between">
+							<h2 className="card-title ">{post.title}</h2>
+							{sessionUserId === post.userId && (
+								<Form action="/deletePost" method="post" className="">
+									<input type="hidden" name="postId" value={post.id} />
+									<div className="dropdown dropdown-end">
+										<EllipsesIcon />
+										<ul
+											tabIndex={0}
+											className="dropdown-content menu bg-base-100 rounded-box z-1 w-24 p-2 shadow-sm"
+										>
+											<li>
+												<button onClick={() => setIsEditing(true)}>edit</button>
+											</li>
+											<li>
+												<button type="submit" className=" text-red-500">
+													delete
+												</button>
+											</li>
+										</ul>
+									</div>
+								</Form>
+							)}
+						</div>
 
-						<p>{post.body}</p>
+						{post.body}
 						<div className="card-actions justify-end">
 							<button className="btn btn-primary">reply</button>
 						</div>
