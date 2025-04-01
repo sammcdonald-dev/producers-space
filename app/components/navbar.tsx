@@ -16,7 +16,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 		<div className="drawer lg:drawer-open bg-base-100">
 			<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 			<div className="drawer-content flex flex-col">
-				<div className="navbar bg-base-200 sticky top-0 shadow-sm">
+				<div className="navbar bg-base-200 sticky top-0 shadow-sm z-10">
 					<div className="navbar-start">
 						<label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
 							<div tabIndex={0} role="button" className="btn btn-ghost">

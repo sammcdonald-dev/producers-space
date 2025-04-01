@@ -23,3 +23,7 @@ export async function createPost(userId: string, title: string, body: string) {
 		},
 	});
 }
+
+export async function deletePost(id: Post["id"]) {
+	return prisma.post.delete({ where: { id } });
+}
