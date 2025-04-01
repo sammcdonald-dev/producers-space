@@ -43,7 +43,7 @@ model Post {
   link       String?
   body       String
   createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  updatedAt  DateTime   @updatedAt @default(now())
   status     String     @default("active")
   category   String?
   verified   Boolean    @default(false)
