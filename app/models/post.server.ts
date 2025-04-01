@@ -24,12 +24,12 @@ export async function createPost(userId: string, title: string, body: string) {
 	});
 }
 
-export async function editPost(
+export async function updatePost(
 	userId: string,
 	id: Post["id"],
 	title: string,
 	body: string,
-	link: string
+	link?: string | null
 ) {
 	const post = await prisma.post.findUnique({ where: { id } });
 	if (!post) {
