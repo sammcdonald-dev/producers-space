@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Form, NavLink } from "react-router";
 
 export default function Navbar({ children }: { children: React.ReactNode }) {
 	const categories = [
@@ -77,7 +77,11 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 									<a>Settings</a>
 								</li>
 								<li>
-									<a>Logout</a>
+									<Form action="/logout" method="post">
+										<button type="submit" className=" text-red-500">
+											Logout
+										</button>
+									</Form>
 								</li>
 							</ul>
 						</div>

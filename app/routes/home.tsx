@@ -3,6 +3,7 @@ import type { Route } from "./+types/home";
 import prisma from "~/lib/prisma";
 import { getSession } from "~/session.server";
 import Post from "~/components/post";
+import PencilIcon from "~/icons/pencil";
 
 export function meta({}: Route.MetaArgs) {
 	return [
@@ -39,18 +40,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}
 			</ol>
-			<button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
-				<a href="/newPost">Make A New Post</a>
+			<button className="fixed bottom-4 border-1 border-black/30 text-black/30 btn btn-ghost btn-md shadow-xl px-3 py-6 right-4 rounded">
+				<a href="/newPost">
+					<PencilIcon className="size-8" />
+				</a>
 			</button>
-
-			<Form action="/logout" method="post">
-				<button
-					type="submit"
-					className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-				>
-					Logout
-				</button>
-			</Form>
 		</div>
 	);
 }
