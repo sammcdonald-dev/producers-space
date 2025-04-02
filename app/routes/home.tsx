@@ -40,11 +40,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}
 			</ol>
-			<button className="fixed bottom-4 border-1 border-black/30 text-black/30 btn btn-ghost btn-md shadow-xl px-3 py-6 right-4 rounded">
-				<a href="/newPost">
-					<PencilIcon className="size-8" />
-				</a>
-			</button>
+			{/* new post button */}
+			<div className="fixed bottom-0 right-0 p-4">
+				<div className="tooltip tooltip-top text-white" data-tip="new post">
+					<button className="border-1 border-black/30 text-black/30 btn btn-ghost btn-md shadow-xl px-3 py-6 rounded">
+						<a href="/newPost">
+							<PencilIcon className="size-8" />
+						</a>
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 }
