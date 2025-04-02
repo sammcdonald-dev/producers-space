@@ -33,7 +33,10 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	}, [isEditing]);
 
 	return (
-		<div key={post.id} className="card card-border bg-base-200 w-lg shadow-lg">
+		<div
+			key={post.id}
+			className="card card-border bg-base-200 w-sm md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+		>
 			{isEditing ? (
 				<Form
 					action="/editPost"
