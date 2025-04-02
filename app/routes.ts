@@ -5,7 +5,7 @@ export default [
 	route("login", "routes/login.tsx"),
 	route("join", "routes/join.tsx"),
 	route("logout", "routes/logout.tsx"),
-	route("newPost", "routes/newPost.tsx"),
-	route("editPost", "routes/editPost.tsx"),
-	route("deletePost", "routes/deletePost.tsx"),
+	route("newPost", "routes/actions/newPost.tsx"),
+	route("editPost", "routes/actions/editPost.tsx"),
+	route("deletePost", "routes/actions/deletePost.tsx"),
 ] satisfies RouteConfig;
