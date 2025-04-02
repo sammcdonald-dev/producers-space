@@ -13,10 +13,13 @@ model User {
   email         String           @unique
   bio           String?
   image         String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @default(now()) @updatedAt
   longestStreak Int              @default(0)
   currentStreak Int              @default(0)
   admin         Boolean          @default(false)
   password      Password?
+  categories    Category[]       @relation("CategoryToUser")
   comments      Comment[]
   posts         Post[]
   preferences   UserPreferences?
@@ -43,7 +46,7 @@ model Post {
   link       String?
   body       String
   createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt @default(now())
+  updatedAt  DateTime   @default(now()) @updatedAt
   status     String     @default("active")
   category   String?
   verified   Boolean    @default(false)
@@ -70,5 +73,6 @@ model Category {
   id          String @id @default(uuid())
   name        String @unique
   description String
+  users       User[] @relation("CategoryToUser")
   posts       Post[] @relation("CategoryToPost")
 }
