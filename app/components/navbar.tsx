@@ -50,7 +50,7 @@ export default function Navbar({ children, user }: NavbarProps) {
 
 					<div className="navbar-center">
 						<a className="" href="/">
-							<img src="Logo.png" className="w-18 rounded-full" />
+							<img src="Logo.png" className="w-18 rounded-full lazy" />
 						</a>
 					</div>
 					<div className="flex gap-2 navbar-end">
