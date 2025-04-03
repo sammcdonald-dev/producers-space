@@ -1,4 +1,9 @@
-import { type RouteConfig, index, route } from "@react-router/dev/routes";
+import {
+	type RouteConfig,
+	index,
+	layout,
+	route,
+} from "@react-router/dev/routes";
 
 export default [
 	index("routes/home.tsx"),
@@ -8,4 +13,8 @@ export default [
 	route("newPost", "routes/actions/newPost.tsx"),
 	route("editPost", "routes/actions/editPost.tsx"),
 	route("deletePost", "routes/actions/deletePost.tsx"),
+
+	layout("routes/user/layout.tsx", [
+		route("/user/:username", "routes/user/index.tsx"),
+	]),
 ] satisfies RouteConfig;

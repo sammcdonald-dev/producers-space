@@ -14,7 +14,7 @@ type PostProps = {
 		downVotes: number;
 		userId: string;
 	};
-	sessionUserId: string;
+	sessionUserId: any;
 };
 
 export default function Post({ post, sessionUserId }: PostProps) {
@@ -35,7 +35,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	return (
 		<div
 			key={post.id}
-			className="card card-border bg-base-200 w-sm md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+			className="card card-border border-base-300 bg-base-200 w-md md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
 			{isEditing ? (
 				<Form

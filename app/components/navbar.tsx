@@ -1,6 +1,14 @@
 import { Form, NavLink } from "react-router";
 
-export default function Navbar({ children }: { children: React.ReactNode }) {
+type NavbarProps = {
+	children: React.ReactNode;
+	user?: {
+		id: string;
+		username: string;
+	};
+};
+
+export default function Navbar({ children, user }: NavbarProps) {
 	const categories = [
 		"Music Production",
 		"Beat Making",
@@ -12,6 +20,7 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 		"Sound Engineering",
 		"Music Marketing",
 	];
+	const username = user?.username;
 	return (
 		<div className="drawer z-20 lg:drawer-open bg-base-100">
 			<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -67,22 +76,28 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
 								tabIndex={0}
 								className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
 							>
-								<li>
-									<a className="justify-between">
-										Profile
-										<span className="badge">New</span>
-									</a>
-								</li>
-								<li>
-									<a>Settings</a>
-								</li>
-								<li>
-									<Form action="/logout" method="post">
-										<button type="submit" className=" text-red-500">
-											Logout
-										</button>
-									</Form>
-								</li>
+								{username ? (
+									<div>
+										<li>
+											<NavLink to={`/user/${username}`} className="">
+												profile
+											</NavLink>
+										</li>
+										<li>
+											<Form action="/logout" method="post">
+												<button type="submit" className=" text-red-500">
+													logout
+												</button>
+											</Form>
+										</li>
+									</div>
+								) : (
+									<li>
+										<Form action="/login" method="post">
+											<button type="submit">login</button>
+										</Form>
+									</li>
+								)}
 							</ul>
 						</div>
 					</div>
