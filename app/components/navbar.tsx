@@ -74,10 +74,13 @@ export default function Navbar({ children, user }: NavbarProps) {
 							</div>
 							<ul
 								tabIndex={0}
-								className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+								className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 flex p-2 shadow"
 							>
 								{username ? (
 									<div>
+										<li className="text-xs btn-xs bg-primary btn text-white">
+											{username}
+										</li>
 										<li>
 											<NavLink to={`/user/${username}`} className="">
 												profile
@@ -92,11 +95,18 @@ export default function Navbar({ children, user }: NavbarProps) {
 										</li>
 									</div>
 								) : (
-									<li>
-										<Form action="/login" method="post">
-											<button type="submit">login</button>
-										</Form>
-									</li>
+									<div>
+										<li>
+											<Form action="/login" method="post">
+												<button type="submit">login</button>
+											</Form>
+										</li>
+										<li>
+											<Form action="/join" method="post">
+												<button type="submit">sign up</button>
+											</Form>
+										</li>
+									</div>
 								)}
 							</ul>
 						</div>

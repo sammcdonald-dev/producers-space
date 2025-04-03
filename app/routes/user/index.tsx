@@ -1,4 +1,4 @@
-import { useLoaderData, useOutletContext } from "react-router";
+import { useOutletContext } from "react-router";
 import Post from "~/components/post";
 
 type ContextType = {
@@ -16,6 +16,10 @@ type PostType = {
 	upVotes: number;
 	downVotes: number;
 	userId: string;
+	user: {
+		id: any;
+		username: any;
+	};
 };
 
 export default function UserProfile() {

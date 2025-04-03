@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Form } from "react-router";
+import { Form, Link } from "react-router";
 import EllipsesIcon from "~/icons/ellipses";
 
 type PostProps = {
@@ -13,6 +13,10 @@ type PostProps = {
 		upVotes: number;
 		downVotes: number;
 		userId: string;
+		user: {
+			id: any;
+			username: any;
+		};
 	};
 	sessionUserId: any;
 };
@@ -24,6 +28,8 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	const [link, setLink] = useState(post.link);
 
 	const titleInputRef = useRef<HTMLInputElement>(null);
+
+	const postUserId = post.userId;
 
 	// Focus the title input when entering edit mode
 	useEffect(() => {
@@ -75,16 +81,20 @@ export default function Post({ post, sessionUserId }: PostProps) {
 				// href={`/post/${post.id}`}
 				<a>
 					<div className="card-body">
-						<div className="flex justify-between">
-							<h2 className="card-title ">{post.title}</h2>
+						<div className="flex justify-between card-actions">
+							<Link to={`/user/${post.user.username}`}>
+								<h3 className=" underline-offset-2 underline text-black/40 hover:text-black/80">
+									{post.user.username}
+								</h3>
+							</Link>
 							{sessionUserId === post.userId && (
-								<Form action="/deletePost" method="post" className="">
+								<Form action="/deletePost" method="post">
 									<input type="hidden" name="postId" value={post.id} />
 									<div className="dropdown dropdown-end">
-										<EllipsesIcon />
+										<EllipsesIcon className="size-6 -m-1" tabIndex={0} />
 										<ul
 											tabIndex={0}
-											className="dropdown-content menu bg-base-100 rounded-box z-1 w-24 p-2 shadow-sm"
+											className="dropdown-content menu bg-base-100 rounded-box z-1 w-24 shadow-sm"
 										>
 											<li>
 												<button onClick={() => setIsEditing(true)}>edit</button>
@@ -99,6 +109,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 								</Form>
 							)}
 						</div>
+						<h2 className="card-title">{post.title}</h2>
 
 						{post.body}
 						<div className="card-actions justify-end">

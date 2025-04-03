@@ -32,6 +32,14 @@ export async function loader({
 	// Fetch posts for the user
 	const posts = await prisma.post.findMany({
 		where: { userId: user.id },
+		include: {
+			user: {
+				select: {
+					id: true,
+					username: true,
+				},
+			},
+		},
 	});
 	console.log("User Posts:", posts);
 

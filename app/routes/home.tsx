@@ -15,12 +15,22 @@ export async function loader({ request }: { request: Request }) {
 	const session = await getSession(request);
 	const sessionUserId = session.get("userId");
 	const users = await prisma.user.findMany();
-	const posts = await prisma.post.findMany();
-	return { users, posts, sessionUserId, session };
+	const posts = await prisma.post.findMany({
+		include: {
+			user: {
+				select: {
+					id: true,
+					username: true,
+				},
+			},
+		},
+	});
+
+	return { posts, sessionUserId, session };
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-	const { users, posts, sessionUserId } = loaderData;
+	const { posts, sessionUserId } = loaderData;
 
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center">
