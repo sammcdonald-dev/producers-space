@@ -41,7 +41,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	return (
 		<div
 			key={post.id}
-			className="card card-border border-base-300 bg-base-200 w-md md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+			className="card card-border border-base-300 bg-base-200 mx-auto w-sm md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
 			{isEditing ? (
 				<Form
@@ -83,7 +83,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 					<div className="card-body">
 						<div className="flex justify-between card-actions">
 							<Link to={`/user/${post.user.username}`}>
-								<h3 className=" underline-offset-2 underline text-black/40 hover:text-black/80">
+								<h3 className=" underline-offset-2 underline text-black/40 hover:text-black/80 dark:text-white/40 hover:dark:text-white/80">
 									{post.user.username}
 								</h3>
 							</Link>
@@ -111,7 +111,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 						</div>
 						<h2 className="card-title">{post.title}</h2>
 
-						{post.body}
+						<p className="line-clamp-5">{post.body}</p>
 						<div className="card-actions justify-end">
 							<button className="btn btn-primary">reply</button>
 						</div>

@@ -59,6 +59,10 @@ export default function Navbar({ children, user }: NavbarProps) {
 						placeholder="Search"
 						className="input input-bordered w-24 md:w-auto"
 					/> */}
+						{username && (
+							<li className="text-sm btn-sm bg-base-300 btn">{username}</li>
+						)}
+
 						<div className="dropdown dropdown-end">
 							<div
 								tabIndex={0}
@@ -74,21 +78,29 @@ export default function Navbar({ children, user }: NavbarProps) {
 							</div>
 							<ul
 								tabIndex={0}
-								className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 flex p-2 shadow"
+								className="menu menu-sm dropdown-content text-sm bg-base-100 rounded-box z-1 mt-3 flex p-2 shadow"
 							>
 								{username ? (
 									<div>
-										<li className="text-xs btn-xs bg-primary btn text-white">
-											{username}
-										</li>
 										<li>
-											<NavLink to={`/user/${username}`} className="">
+											<NavLink
+												to={`/user/${username}`}
+												className={({ isActive, isPending }) =>
+													`text-sm ${
+														isPending
+															? "pending"
+															: isActive
+															? "bg-primary text-white"
+															: ""
+													}`
+												}
+											>
 												profile
 											</NavLink>
 										</li>
 										<li>
 											<Form action="/logout" method="post">
-												<button type="submit" className=" text-red-500">
+												<button type="submit" className="text-sm text-red-500">
 													logout
 												</button>
 											</Form>
