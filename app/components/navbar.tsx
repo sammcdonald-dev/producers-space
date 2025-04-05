@@ -78,7 +78,7 @@ export default function Navbar({ children, user }: NavbarProps) {
 							</div>
 							<ul
 								tabIndex={0}
-								className="menu menu-sm dropdown-content text-sm bg-base-100 rounded-box z-1 mt-3 flex p-2 shadow"
+								className="menu menu-sm flex dropdown-content w-28 text-sm bg-base-100 rounded-box z-1 mt-3 p-2 shadow"
 							>
 								{username ? (
 									<div>
@@ -86,7 +86,7 @@ export default function Navbar({ children, user }: NavbarProps) {
 											<NavLink
 												to={`/user/${username}`}
 												className={({ isActive, isPending }) =>
-													`text-sm ${
+													`text-sm flex ${
 														isPending
 															? "pending"
 															: isActive
@@ -108,14 +108,21 @@ export default function Navbar({ children, user }: NavbarProps) {
 									</div>
 								) : (
 									<div>
-										<li>
+										<li className="flex flex-nowrap">
 											<Form action="/login" method="post">
-												<button type="submit">login</button>
+												<button type="submit" className="text-sm">
+													login
+												</button>
 											</Form>
 										</li>
-										<li>
+										<li className="flex flex-nowrap">
 											<Form action="/join" method="post">
-												<button type="submit">sign up</button>
+												<button
+													type="submit"
+													className="text-sm flex flex-nowrap"
+												>
+													sign up
+												</button>
 											</Form>
 										</li>
 									</div>
