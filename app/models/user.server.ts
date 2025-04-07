@@ -33,8 +33,18 @@ export async function createUser(email: User["email"], password: string) {
 	});
 }
 
-export async function updateUser(email: User["email"], data: Partial<User>) {
-	return prisma.user.update({ where: { email }, data });
+export async function updateUser(
+	id: User["id"],
+	username: string,
+	bio: string
+) {
+	return prisma.user.updateMany({
+		where: { id },
+		data: {
+			username: username,
+			bio: bio,
+		},
+	});
 }
 
 export async function deleteUserByEmail(email: User["email"]) {

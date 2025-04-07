@@ -13,6 +13,7 @@ export default [
 	route("newPost", "routes/actions/newPost.tsx"),
 	route("editPost", "routes/actions/editPost.tsx"),
 	route("deletePost", "routes/actions/deletePost.tsx"),
+	route("editProfile", "routes/actions/editProfile.tsx"),
 
 	layout("routes/user/layout.tsx", [
 		route("/user/:username", "routes/user/index.tsx"),
