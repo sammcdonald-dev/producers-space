@@ -53,7 +53,7 @@ type LoaderData = {
 		id: string;
 		username: string;
 		email: string;
-		bio: string | null;
+		bio: string;
 		image: string | null;
 		createdAt: Date;
 		longestStreak: number;
