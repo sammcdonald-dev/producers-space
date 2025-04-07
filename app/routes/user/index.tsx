@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router";
-import Post from "~/components/post";
+import Post from "~/components/postCard";
 
 type ContextType = {
 	user: any | null;

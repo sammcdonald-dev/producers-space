@@ -26,11 +26,8 @@ export default function Profile({ user, sessionUserId }: UserData) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [username, setUsername] = useState(user.username);
 	const [userImage, setUserImage] = useState(user.image);
-	const [placeHolderBio, setPlaceHolderBio] = useState(user.bio);
-	if (user.bio === null) {
-		setPlaceHolderBio("bio: please set your bio");
-	}
-	const [bio, setBio] = useState(placeHolderBio);
+
+	const [bio, setBio] = useState("placeholder");
 	const userInputRef = useRef(null);
 
 	return (

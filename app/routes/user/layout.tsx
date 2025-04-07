@@ -1,4 +1,4 @@
-import { Outlet, useLoaderData } from "react-router";
+import { NavLink, Outlet, useLoaderData } from "react-router";
 import Profile from "~/components/profile";
 import GearIcon from "~/icons/gear";
 import prisma from "~/lib/prisma";

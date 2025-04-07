@@ -109,7 +109,9 @@ export default function Post({ post, sessionUserId }: PostProps) {
 								</Form>
 							)}
 						</div>
-						<h2 className="card-title">{post.title}</h2>
+						<Link to={`/${post.id}`}>
+							<h2 className="card-title hover:underline">{post.title}</h2>
+						</Link>
 
 						<p className="line-clamp-5">{post.body}</p>
 						<div className="card-actions justify-end">

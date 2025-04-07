@@ -15,6 +15,8 @@ export default [
 	route("deletePost", "routes/actions/deletePost.tsx"),
 	route("editProfile", "routes/actions/editProfile.tsx"),
 
+	route(":postId", "routes/post.tsx"),
+
 	layout("routes/user/layout.tsx", [
 		route("/user/:username", "routes/user/index.tsx"),
 	]),

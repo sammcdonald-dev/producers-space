@@ -1,7 +1,7 @@
 import type { Route } from "./+types/home";
 import prisma from "~/lib/prisma";
 import { getSession } from "~/session.server";
-import Post from "~/components/post";
+import Post from "~/components/postCard";
 import PencilIcon from "~/icons/pencil";
 
 export function meta({}: Route.MetaArgs) {
