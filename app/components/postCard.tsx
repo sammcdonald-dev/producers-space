@@ -52,7 +52,8 @@ export default function Post({ post, sessionUserId }: PostProps) {
 					<input type="hidden" name="postId" value={post.id} />
 					<div className="card-body">
 						<input
-							ref={titleInputRef}
+							// ref={titleInputRef}
+							autoFocus={true}
 							className={`card-title ${isEditing ? "input-focused" : ""}`}
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}

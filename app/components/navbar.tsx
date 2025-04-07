@@ -109,14 +109,14 @@ export default function Navbar({ children, user }: NavbarProps) {
 								) : (
 									<div>
 										<li className="flex flex-nowrap">
-											<Form action="/login" method="post">
+											<Form action="/login" method="get">
 												<button type="submit" className="text-sm">
 													login
 												</button>
 											</Form>
 										</li>
 										<li className="flex flex-nowrap">
-											<Form action="/join" method="post">
+											<Form action="/join" method="get">
 												<button
 													type="submit"
 													className="text-sm flex flex-nowrap"

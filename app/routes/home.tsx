@@ -16,6 +16,7 @@ export async function loader({ request }: { request: Request }) {
 	const sessionUserId = session.get("userId");
 	const users = await prisma.user.findMany();
 	const posts = await prisma.post.findMany({
+		orderBy: { createdAt: "desc" },
 		include: {
 			user: {
 				select: {
