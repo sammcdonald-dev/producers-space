@@ -45,7 +45,7 @@ export async function getUser(request: Request) {
 
 export async function requireUserId(request: Request) {
 	const userId = await getUserId(request);
-	console.log("Retrieved userId from session:", userId); // Debugging log
+	//console.log("Retrieved userId from session:", userId); // Debugging log
 	if (!userId) {
 		throw redirect(`/login`);
 	}

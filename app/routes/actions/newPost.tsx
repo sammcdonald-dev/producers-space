@@ -13,7 +13,7 @@ export const action = async ({ request }: { request: Request }) => {
 	if (!userId) {
 		return redirect("/login");
 	}
-	console.log("userId", userId);
+	//console.log("userId", userId);
 	const formData = await request.formData();
 	const title = formData.get("title");
 	const body = formData.get("body");

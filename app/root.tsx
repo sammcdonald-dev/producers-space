@@ -10,6 +10,8 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import Navbar from "./components/navbar";
+import { getSession } from "./session.server";
+import { getUserById } from "./models/user.server";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,10 +44,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
 	);
 }
 
-export default function App() {
+export async function loader({ request }: { request: Request }) {
+	const session = await getSession(request);
+	const sessionUserId = session.get("userId");
+	console.log(sessionUserId);
+	const user = sessionUserId ? await getUserById(sessionUserId) : null; // Retrieve the session user ID
+	return { user, sessionUserId };
+}
+
+export default function App({ loaderData }: Route.ComponentProps) {
+	const { user } = loaderData;
+
+	const navbarUser = user
+		? { id: user.id, username: user.username }
+		: undefined;
+
 	return (
 		<>
-			<Navbar>
+			<Navbar user={navbarUser}>
 				<Outlet />
 			</Navbar>
 		</>

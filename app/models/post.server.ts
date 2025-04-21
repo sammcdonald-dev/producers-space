@@ -23,3 +23,31 @@ export async function createPost(userId: string, title: string, body: string) {
 		},
 	});
 }
+
+export async function updatePost(
+	userId: string,
+	id: Post["id"],
+	title: string,
+	body: string,
+	link?: string | null
+) {
+	const post = await prisma.post.findUnique({ where: { id } });
+	if (!post) {
+		throw new Error("Post not found");
+	}
+	return prisma.post.update({
+		where: { id },
+		data: {
+			title: title,
+			body: body,
+			link: link,
+			user: {
+				connect: { id: userId },
+			},
+		},
+	});
+}
+
+export async function deletePost(id: Post["id"]) {
+	return prisma.post.delete({ where: { id } });
+}
