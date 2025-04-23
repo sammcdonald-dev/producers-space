@@ -46,17 +46,31 @@ export default function NewPost({}) {
 	}, [actionData]);
 
 	return (
-		<Form method="post" className="flex flex-col gap-4">
-			<input name="title" ref={titleRef} placeholder="title of post" required />
-			<textarea
-				name="body"
-				ref={bodyRef}
-				placeholder="content of post"
-				required
-			/>
-			<button type="submit" className="bg-blue-500 text-white p-2 rounded">
-				Create Post
-			</button>
-		</Form>
+		<div
+			className="card card-border border-base-300 bg-base-200 mx-auto w-sm 
+			md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+		>
+			<Form method="post" className="flex flex-col gap-4 ">
+				<div className="card-body">
+					<input
+						className="card-title"
+						name="title"
+						ref={titleRef}
+						placeholder="title of post"
+						required
+					/>
+					<textarea
+						name="body"
+						className="h-32"
+						ref={bodyRef}
+						placeholder="content of post"
+						required
+					/>
+					<button type="submit" className="bg-blue-500 text-white p-2 rounded">
+						Create Post
+					</button>
+				</div>
+			</Form>
+		</div>
 	);
 }

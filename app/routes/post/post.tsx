@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router";
+import { Outlet, useLoaderData } from "react-router";
 import PostCard from "~/components/postCard";
 import prisma from "~/lib/prisma";
 import { getUserById } from "~/models/user.server";
@@ -59,8 +59,9 @@ export default function postPage({ params }: { params: { postId: string } }) {
 	const { postId } = params;
 	const { post, sessionUserId } = useLoaderData<PostProps>();
 	return (
-		<div>
+		<div className="h-full flex flex-col items-center justify-center">
 			<PostCard post={post} sessionUserId={sessionUserId} />
+			<Outlet />
 		</div>
 	);
 }
