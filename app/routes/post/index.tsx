@@ -36,17 +36,27 @@ export default function PostComments({
 	comments,
 	sessionUserId,
 }: {
-	comments: any;
-	sessionUserId: any;
+	comments: Array<{
+		id: string;
+		createdAt: string;
+		userId: string;
+		postId: string;
+		user: {
+			id: string;
+			username: string;
+		};
+		body?: string;
+	}>;
+	sessionUserId: string;
 }) {
 	return (
 		<div className="card card-border border-base-300 bg-base-200 mx-auto w-sm md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
 			<div className="card-body">
 				<h2 className="card-title">Comments</h2>
 				<p>Comments will be here</p>
-				{!comments.length && <p>No comments yet</p>}
-				{comments.map((comment) => {
-					return (
+				{comments &&
+					comments.length >= 1 &&
+					comments.map((comment) => (
 						<div
 							key={comment.id}
 							className="card card-bordered bg-base-100 shadow-sm mb-2"
@@ -56,8 +66,7 @@ export default function PostComments({
 								<p>{comment.body}</p>
 							</div>
 						</div>
-					);
-				})}
+					))}
 			</div>
 		</div>
 	);
