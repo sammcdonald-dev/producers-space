@@ -116,7 +116,9 @@ export default function Post({ post, sessionUserId }: PostProps) {
 
 						<p className="line-clamp-5">{post.body}</p>
 						<div className="card-actions justify-end">
-							<button className="btn btn-primary">reply</button>
+							<a href={`${post.id}/newComment`}>
+								<button className="btn btn-primary">reply</button>
+							</a>
 						</div>
 					</div>
 				</a>
