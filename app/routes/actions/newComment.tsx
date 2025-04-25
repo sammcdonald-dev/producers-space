@@ -61,9 +61,9 @@ export default function NewComment({}) {
 			<Form method="post" className="flex flex-col gap-4 ">
 				<div className="card-body">
 					<input
-						className="card-title"
+						className="p-4"
 						name="text"
-						placeholder="body of comment"
+						placeholder="Your comment"
 						required
 					/>
 					<button type="submit" className="btn btn-primary">

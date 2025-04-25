@@ -13,6 +13,7 @@ export async function loader({
 	const sessionUserId = session.get("userId");
 	const { postId } = params;
 	const comments = await prisma.comment.findMany({
+		orderBy: { createdAt: "desc" },
 		where: {
 			postId: postId,
 		},
@@ -35,24 +36,27 @@ export default function PostComments({ loaderData }: Route.ComponentProps) {
 	const { comments, sessionUserId } = loaderData;
 	return (
 		<div
-			className="card card-border border-base-300 bg-base-200 mx-auto w-sm md:w-lg 
+			className="card p-4 card-border border-base-300 bg-base-200 mx-auto w-sm md:w-lg 
 			lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
-			<div className="card-body">
-				<h2 className="card-title">Comments</h2>
-				<p>Comments will be here</p>
-				{comments.map((comment) => (
-					<div
-						key={comment.id}
-						className="card card-bordered bg-base-100 shadow-sm mb-2"
-					>
-						<div className="card-body">
-							<h3 className="card-title">{comment.user.username}</h3>
-							<p>{comment.text}</p>
-						</div>
+			<h2 className="card-title p-2">Comments</h2>
+			{comments.map((comment) => (
+				<div
+					key={comment.id}
+					className="card card-bordered bg-base-100 mb-2 shadow-sm 
+					hover:shadow-xl transition-all duration-300 ease-in-out"
+				>
+					<div className="card-body">
+						<h3
+							className="underline-offset-2 underline text-black/40 
+						hover:text-black/80 dark:text-white/40 hover:dark:text-white/80"
+						>
+							{comment.user.username}
+						</h3>
+						<p>{comment.text}</p>
 					</div>
-				))}
-			</div>
+				</div>
+			))}
 		</div>
 	);
 }
