@@ -1,0 +1,30 @@
+services:
+  producers-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: producers_space
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  producers-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - producers_app_node_modules:/app/node_modules
+    depends_on:
+      - producers-db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@producers-db:5432/producers_space
+
+volumes:
+  postgres_data:
+  producers_app_node_modules:
