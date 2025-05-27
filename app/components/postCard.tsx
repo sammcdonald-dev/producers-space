@@ -41,7 +41,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 	return (
 		<div
 			key={post.id}
-			className="card card-border border-base-300 bg-base-200 mx-auto w-sm md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+			className="card card-border border-base-300 bg-base-200 mx-auto w-full max-w-3xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
 			{isEditing ? (
 				<Form

@@ -14,7 +14,6 @@ export function meta({}: Route.MetaArgs) {
 export async function loader({ request }: { request: Request }) {
 	const session = await getSession(request);
 	const sessionUserId = session.get("userId");
-	const users = await prisma.user.findMany();
 	const posts = await prisma.post.findMany({
 		orderBy: { createdAt: "desc" },
 		include: {
@@ -34,7 +33,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 	const { posts, sessionUserId } = loaderData;
 
 	return (
-		<div className="min-h-screen flex flex-col items-center justify-center">
+		<div className="min-h-screen flex flex-col">
 			{/* <h1 className="text-4xl font-bold mb-8 font-[family-name:var(--font-geist-sans)] text-[#333333]">
 				Super blog
 			</h1>
@@ -45,7 +44,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 					</li>
 				))}
 			</ol> */}
-			<ol className="space-y-5 mt-5 mb-5">
+			<ol className="space-y-5 mb-5 mt-5 mx-8">
 				{posts.map((post) => (
 					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}
