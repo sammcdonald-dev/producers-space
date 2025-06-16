@@ -59,7 +59,7 @@ export default function postPage({ params }: { params: { postId: string } }) {
 	const { postId } = params;
 	const { post, sessionUserId } = useLoaderData<PostProps>();
 	return (
-		<div className="h-full flex flex-col">
+		<div className="h-full flex flex-col m-4 space-y-2">
 			<PostCard post={post} sessionUserId={sessionUserId} />
 			<Outlet />
 		</div>

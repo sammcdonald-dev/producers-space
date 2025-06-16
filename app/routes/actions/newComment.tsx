@@ -54,10 +54,7 @@ export default function NewComment({}) {
 	const bodyRef = useRef<HTMLTextAreaElement>(null);
 
 	return (
-		<div
-			className="card card-border border-base-300 bg-base-200 mx-auto w-sm 
-            md:w-lg lg:w-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
-		>
+		<div className="card card-border border-base-300 bg-base-200 mx-auto w-full max-w-3xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out">
 			<Form method="post" className="flex flex-col gap-4 ">
 				<div className="card-body">
 					<input

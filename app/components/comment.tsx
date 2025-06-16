@@ -2,7 +2,7 @@ export default function Comment({ comment }: { comment: any }) {
 	return (
 		<div
 			key={comment.id}
-			className="card card-bordered bg-base-100 mb-2 shadow-sm 
+			className="card card-bordered bg-base-100 shadow-sm 
 					hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
 			<div className="card-body">

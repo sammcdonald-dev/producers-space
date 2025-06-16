@@ -33,7 +33,7 @@ export default function UserProfile() {
 
 	return (
 		<div>
-			<ol className="space-y-4">
+			<ol className="space-y-4 mx-4">
 				{posts.map((post: PostType) => (
 					<Post key={post.id} post={post} sessionUserId={sessionUserId} /> // Assuming Post component is imported
 				))}
