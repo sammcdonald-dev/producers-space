@@ -23,13 +23,15 @@ type PostProps = {
 
 export default function Post({ post, sessionUserId }: PostProps) {
 	const [isEditing, setIsEditing] = useState(false);
-	const [title, setTitle] = useState(post.title);
-	const [body, setBody] = useState(post.body);
-	const [link, setLink] = useState(post.link);
+	const [postData, setPostData] = useState<PostProps["post"]>({
+		...post,
+		title: post.title,
+		body: post.body,
+		link: post.link,
+	});
 
 	const titleInputRef = useRef<HTMLInputElement>(null);
 
-	const postUserId = post.userId;
 
 	// Focus the title input when entering edit mode
 	useEffect(() => {
@@ -40,7 +42,7 @@ export default function Post({ post, sessionUserId }: PostProps) {
 
 	return (
 		<div
-			key={post.id}
+			key={postData.id}
 			className="card card-border dark:border-base-100 bg-base-200 mx-auto w-full max-w-3xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
 		>
 			{isEditing ? (
@@ -49,20 +51,20 @@ export default function Post({ post, sessionUserId }: PostProps) {
 					method="put"
 					onSubmit={() => setIsEditing(false)}
 				>
-					<input type="hidden" name="postId" value={post.id} />
+					<input type="hidden" name="postId" value={postData.id} />
 					<div className="card-body">
 						<input
 							// ref={titleInputRef}
 							autoFocus={true}
 							className={`card-title ${isEditing ? "input-focused" : ""}`}
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
+							value={postData.title}
+							onChange={(e) => setPostData({ ...postData, title: e.target.value })}
 							name="title"
 						/>
 						<textarea
 							className=""
-							value={body}
-							onChange={(e) => setBody(e.target.value)}
+							value={postData.body}
+							onChange={(e) => setPostData({ ...postData, body: e.target.value })}
 							name="body"
 						/>
 						<div className="card-actions justify-end">
@@ -83,14 +85,14 @@ export default function Post({ post, sessionUserId }: PostProps) {
 				<a>
 					<div className="card-body">
 						<div className="flex justify-between card-actions">
-							<Link to={`/user/${post.user.username}`}>
+							<Link to={`/user/${postData.user.username}`}>
 								<h3 className=" underline-offset-2 underline text-black/40 hover:text-black/80 dark:text-white/40 hover:dark:text-white/80">
-									{post.user.username}
+									{postData.user.username}
 								</h3>
 							</Link>
-							{sessionUserId === post.userId && (
+							{sessionUserId === postData.userId && (
 								<Form action="/deletePost" method="post">
-									<input type="hidden" name="postId" value={post.id} />
+									<input type="hidden" name="postId" value={postData.id} />
 									<div className="dropdown dropdown-end">
 										<EllipsesIcon className="size-6 -m-1" tabIndex={0} />
 										<ul
@@ -110,13 +112,13 @@ export default function Post({ post, sessionUserId }: PostProps) {
 								</Form>
 							)}
 						</div>
-						<Link to={`/${post.id}`}>
-							<h2 className="card-title hover:underline">{post.title}</h2>
+						<Link to={`/${postData.id}`}>
+							<h2 className="card-title hover:underline">{postData.title}</h2>
 						</Link>
 
-						<p className="line-clamp-5">{post.body}</p>
+						<p className="line-clamp-5">{postData.body}</p>
 						<div className="card-actions justify-end">
-							<a href={`${post.id}/newComment`}>
+							<a href={`${postData.id}/newComment`}>
 								<button className="btn btn-primary">reply</button>
 							</a>
 						</div>
